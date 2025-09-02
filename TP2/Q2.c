@@ -8,9 +8,13 @@ int vogal(char str[1000]){
     
     for(int i = 0; i < tam; i++){
         char temp = tolower(str[i]);
+        if(!(temp >= 'a' && temp <= 'z')){
+            return 0; //achou char especial
+        }
         if(temp != 'a' && temp != 'e' && temp != 'i' && temp != 'o' && temp != 'u'){
             return 0; //achou consoante
         }
+        
     }
     return 1; //so vogais
 }
@@ -20,6 +24,10 @@ int consoante(char str[1000]){
     
     for(int i = 0; i < tam; i++){
         char temp = tolower(str[i]);
+
+        if(!(temp >= 'a' && temp <= 'z')){
+            return 0; //achou char especial
+        }
         if (temp != 'b' && temp != 'c' && temp != 'd' && temp != 'f' && temp != 'g' &&
             temp != 'h' && temp != 'j' && temp != 'k' && temp != 'l' && temp != 'm' &&
             temp != 'n' && temp != 'p' && temp != 'q' && temp != 'r' && temp != 's' &&
@@ -27,6 +35,7 @@ int consoante(char str[1000]){
             temp != 'z') {
             return 0; //achou vogal
         }
+        
     }
     return 1; //so consoante
 }
@@ -44,20 +53,25 @@ int inteiro(char str[1000]){
 
 int real(char str[1000]){
     int num_virgs = 0;
+    int tem_digito = 0;
     int tam = strlen(str);
+
     for(int i = 0; i < tam; i++){
         char temp = str[i];
-        if(temp != '1' && temp != '2' && temp != '3' && temp != '4' && temp != '5' && temp != '6' && temp != '7' && temp != '8' && temp != '9' && temp != '0' && temp != ',' && temp != '.'){
-            return 0; //achou errado
-        }
-        if(temp == ',' || temp == '.'){
+
+        if (temp == '.' || temp == ',') {
             num_virgs++;
-        }
-        if(num_virgs > 1){
-            return 0; //numero errado de virgulas
+            if (num_virgs > 1) return 0;
+        } else if (isdigit(temp)) {
+            tem_digito = 1;
+        } else {
+            return 0; // caractere inválido
         }
     }
-    return 1; //achou numero real
+
+    if (!tem_digito) return 0; // não tem nenhum número
+
+    return 1;
 }
 
 
@@ -65,7 +79,8 @@ int main(){
 
     char str[1000];
 
-    scanf("%s", str);
+    fgets(str, 1000, stdin);
+    str[strcspn(str, "\n")] = 0;
 
     while(strcmp(str, "FIM") != 0){
         if(vogal(str) == 1){
@@ -94,7 +109,8 @@ int main(){
 
         printf("\n");
 
-        scanf("%s", str);
+        fgets(str, 1000, stdin);
+        str[strcspn(str, "\n")] = 0;
     }
     return 0;
 }
