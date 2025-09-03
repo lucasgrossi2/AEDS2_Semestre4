@@ -1,5 +1,15 @@
 import java.util.*;
 
+class MyIO {
+    public static void print(String s) {
+        System.out.print(s);
+    }
+
+    public static void println(String s) {
+        System.out.println(s);
+    }
+}
+
 public class Q5{
 
     public static int comparar(int[] alfabeto1, int[] alfabeto2){
@@ -39,9 +49,9 @@ public class Q5{
             encherArray(second, alfabeto2);
 
             if(comparar(alfabeto1, alfabeto2) == 1){
-                System.out.println("SIM");
+                MyIO.println("SIM");
             } else {
-                System.out.println("NÃO");
+                MyIO.println("NÃO");
             }
 
             first = sc.next();
