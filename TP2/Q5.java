@@ -49,7 +49,7 @@ public class Q5{
             encherArray(second, alfabeto2);
 
             if(comparar(alfabeto1, alfabeto2) == 1){
-                MyIO.println("SIM");
+                MyIO.println("SIM");    
             } else {
                 MyIO.println("NÃO");
             }
