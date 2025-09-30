@@ -1,0 +1,50 @@
+compilar programa C no vscode ou terminal: gcc [nome].c -o [nome]
+
+rodar arquivo C no vscode: ./[nome].exe 
+
+rodar arquivo C no terminal usando pub.in: ./[nome] <pub.in>saida.out  /// pub.in e saida.out são os nomes dos arquivos txt
+
+comparar 
+
+compilar arquivo java no vs code: javac [nome].java /// Se não der certo, tentar: javac -d . [nome].java
+ 
+rodar arquivo java no vs code: java [nome do pacote].[nome do programa] /// lembra de mover um diretorio acima do pacote que ele irá procurar
+
+abrir postgre: sudo -i -u postgres /// senha: dedeco30
+
+======================================================================
+
+Java:
+
+comparar alfabeticamente: str1.compareTo(str2)
+
+ignorar caixa: str1.compareToIgnoreCase(str2)
+
+Construtor:
+
+public class Person {
+    String name;
+    int age;
+
+    // Constructor with 'this'
+    public Person(String name, int age) {
+        this.name = name;  // 'this.name' refers to the instance variable
+        this.age = age;
+    }
+}
+
+Person people = new Person[25]
+
+ for (int i = 0; i < people.length; i++) {
+            String generatedName = "Person" + (i + 1);
+            int generatedAge = 20 + (i % 10);  // Just some example age logic
+            people[i] = new Person(generatedName, generatedAge);
+        }
+
+===============================================
+
+C:
+
+comparar alfabeticamente: strcmp(str1, str2)
+
+ignorar caixa: _stricmp(str1, str2)

@@ -22,4 +22,8 @@ public class Q3{
 
         sc.close();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 71452fce89d9af88dd5de6b56f45716332c934d1
