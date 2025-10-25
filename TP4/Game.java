@@ -132,7 +132,7 @@ public class Game {
 
         while ((line = br.readLine()) != null) {
             if (first) {
-                first = false; // skip header
+                first = false; // skiap header
                 continue;
             }
             games.add(Game.fromCSV(line));
