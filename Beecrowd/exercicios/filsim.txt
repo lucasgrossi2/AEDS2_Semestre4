@@ -1,0 +1,66 @@
+class Celula {
+    int elemento;
+    Celula prox;
+
+    Celula(int elemento) {
+        this.elemento = elemento;
+        this.prox = null;
+    }
+}
+
+class Fila {
+    Celula primeiro, ultimo;
+
+    Fila() {
+        primeiro = ultimo = null;
+    }
+
+    void inserir(int elemento) {
+        Celula nova = new Celula(elemento);
+        if (primeiro == null) {
+            primeiro = ultimo = nova;
+        } else {
+            ultimo.prox = nova;
+            ultimo = nova;
+        }
+    }
+
+    int remover() {
+        if (primeiro == null) {
+            System.out.println("Erro: fila vazia!");
+            return -1;
+        } else {
+            int removido = primeiro.elemento;
+            primeiro = primeiro.prox;
+            if (primeiro == null) {
+                ultimo = null; // fila ficou vazia
+            }
+            return removido;
+        }
+    }
+
+    boolean buscar(int elemento) {
+        Celula atual = primeiro;
+        while (atual != null) {
+            if (atual.elemento == elemento) {
+                return true;
+            }
+            atual = atual.prox;
+        }
+        return false;
+    }
+
+    void mostrar() {
+        if (primeiro == null) {
+            System.out.println("Fila vazia");
+        } else {
+            System.out.print("Fila: ");
+            Celula atual = primeiro;
+            while (atual != null) {
+                System.out.print(atual.elemento + " ");
+                atual = atual.prox;
+            }
+            System.out.println();
+        }
+    }
+}

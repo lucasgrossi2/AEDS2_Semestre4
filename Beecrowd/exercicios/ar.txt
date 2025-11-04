@@ -1,0 +1,101 @@
+Árvore:
+
+class Arvore {
+    No raiz;
+
+    Arvore() {
+        raiz = null;
+    }
+
+    Arvore(No raiz) {
+        this.raiz = raiz;
+    }
+
+    boolean pesquisar(int elemento) {
+        return pesquisar(raiz, elemento);
+    }
+
+    boolean pesquisar(No no, int elemento) {
+        if (no == null) {
+            return false;
+        } else if (elemento == no.elemento) {
+            return true;
+        } else if (elemento < no.elemento) {
+            return pesquisar(no.esq, elemento);
+        } else {
+            return pesquisar(no.dir, elemento);
+        }
+    }
+
+    void inserir(int elemento) {
+        raiz = inserir(raiz, elemento);
+    }
+
+    No inserir(No no, int elemento) {
+        if (no == null) {
+            no = new No(elemento);
+        } else if (elemento < no.elemento) {
+            no.esq = inserir(no.esq, elemento);
+        } else if (elemento > no.elemento) {
+            no.dir = inserir(no.dir, elemento);
+        }
+        return no;
+    }
+
+    void remover(int elemento) {
+        raiz = remover(raiz, elemento);
+    }
+
+    No remover(No no, int elemento) {
+        if (no == null) {
+            return null;
+        } else if (elemento < no.elemento) {
+            no.esq = remover(no.esq, elemento);
+        } else if (elemento > no.elemento) {
+            no.dir = remover(no.dir, elemento);
+        } else {
+            // encontrou o elemento
+            if (no.esq == null && no.dir == null) {
+                no = null; // caso 1: nó folha
+            } else if (no.esq == null) {
+                no = no.dir; // caso 2: só tem filho à direita
+            } else if (no.dir == null) {
+                no = no.esq; // caso 2: só tem filho à esquerda
+            } else {
+                // caso 3: dois filhos -> substitui pelo menor da direita
+                No substituto = menor(no.dir);
+                no.elemento = substituto.elemento;
+                no.dir = remover(no.dir, substituto.elemento);
+            }
+        }
+        return no;
+    }
+
+    No menor(No no) {
+        while (no.esq != null) {
+            no = no.esq;
+        }
+        return no;
+    }
+}
+
+
+
+Nó:
+
+class No {
+    public int elemento; // Conteúdo do no.
+    public No esq, dir;  // Filhos da esq e dir.
+
+    public No(int elemento) {
+        this.elemento = elemento;
+        this.esq = null;
+        this.dir = null;
+    }
+
+    public No(int elemento, No esq, No dir) {
+        this.elemento = elemento;
+        this.esq = esq;
+        this.dir = dir;
+    }
+}
